@@ -119,17 +119,22 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Middleware
 app.use(express.json());
+const buildpath=path.join(__dirname,"../frontend/build ")
+app.use(express.static(buildpath));
+app.use(cors({
+    "origin":"*", 
+}));
 app.use(express.urlencoded({ extended: true }));
 
 //Updated CORS configuration for your frontend
-app.use(cors({
-    origin: [
-        "https://frontend-mu-sandy-62.vercel.app", 
-        "http://localhost:3000" 
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    credentials: true
-}));
+// app.use(cors({
+//     origin: [
+//         "https://frontend-mu-sandy-62.vercel.app", 
+//         "http://localhost:3000" 
+//     ],
+//     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+//     credentials: true
+// }));
 
 //Connect to MongoDB
 mongoose
